@@ -1,21 +1,36 @@
-:Class DigitFrequency : MiPage
+﻿:Class DigitFrequency : MiPage
     ∇ Compose;go;mat
       :Access Public
       Add _.title'Digit Frequency'
       Add _.h1'Digit Frequency'
-      '#file'Add _.Input '' ⍬'Filename: '
+      '#file'Add _.Input''⍬'Filename: '
       go←Add _.Button'Go'
       go.On'click' 'OnGo'('input' 'val' '#file')
       mat←'Digit' 'Count'⍪' ',⍨⍪⎕D
       '#freqtable'Add _.Table mat ⍬ 1
-      '#chart'Add _.div
+      '#chart' 'style="width:50%"'Add _.div
     ∇
 
-    ∇ r←OnGo;mat
+    ∇ r←OnGo;mat;svg;data
       :Access Public
       ⎕←'load data from ',Get'input'
-      mat←'Digit' 'Count'⍪⎕D,⍪?10⍴100
+      data←?10⍴100
+      mat←'Digit' 'Count'⍪⎕D,⍪data
       r←'#freqtable'Replace New _.Table mat ⍬ 1
-      r,←'#chart'Replace('[chart xml ',(⍕?0),']')
+      svg←Chart data
+      r,←'#chart'Replace svg
     ∇
+
+    ∇ svg←Chart data;sp;⎕USING;System;Causeway
+      :If 0=⎕NC'Causeway'
+          ⎕USING←',system.dll' ',system.drawing.dll' ',sharpplot.dll'
+      :AndIf 0=⎕NC'Causeway'
+          (System.Drawing←System←Causeway←⎕NS ⍬).⎕CY'/opt/mdyalog/17.1/64/unicode/ws/sharpplot.dws'
+      :EndIf
+      sp←⎕NEW Causeway.SharpPlot
+      sp.YAxisStyle←Causeway.YAxisStyles.ForceZero
+      sp.DrawBarChart data
+      svg←sp.RenderSvg Causeway.SvgMode.FixedAspect
+    ∇
+
 :EndClass
