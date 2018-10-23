@@ -1,0 +1,9 @@
+﻿ :Class index : MiPage 
+ 
+     ∇r←Compose
+     :Access Public          
+     Add 'This is the monitor!'
+     ∇
+
+ :EndClass
+

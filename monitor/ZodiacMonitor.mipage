@@ -1,0 +1,16 @@
+:Class ZodiacMonitor : MiPage
+    ∇ Compose;clear;mat;n
+      :Access Public
+      Add _.h1'Zodiac Monitor'
+      clear←Add _.Button'Clear'
+      clear.On'click' 'OnClear'
+      mat←'Container' 'Hits'⍪{(↓(819⌶⎕D,⎕A)[?⍵ 16⍴16]),⍪?⍵⍴9}?7
+      '#hittable'Add _.Table mat ⍬ 1
+    ∇
+
+    ∇ r←OnClear
+      :Access Public
+      ⎕←'empty component file'
+      r←'#hittable'Replace New _.Table(⍉⍪'Container' 'Hits')⍬ 1
+    ∇
+:EndClass

@@ -1,0 +1,21 @@
+:Class DigitFrequency : MiPage
+    ∇ Compose;go;mat
+      :Access Public
+      Add _.title'Digit Frequency'
+      Add _.h1'Digit Frequency'
+      '#file'Add _.Input '' ⍬'Filename: '
+      go←Add _.Button'Go'
+      go.On'click' 'OnGo'('input' 'val' '#file')
+      mat←'Digit' 'Count'⍪' ',⍨⍪⎕D
+      '#freqtable'Add _.Table mat ⍬ 1
+      '#chart'Add _.div
+    ∇
+
+    ∇ r←OnGo;mat
+      :Access Public
+      ⎕←'load data from ',Get'input'
+      mat←'Digit' 'Count'⍪⎕D,⍪?10⍴100
+      r←'#freqtable'Replace New _.Table mat ⍬ 1
+      r,←'#chart'Replace('[chart xml ',(⍕?0),']')
+    ∇
+:EndClass
