@@ -10,7 +10,11 @@ services:
     ports:
     - "8081:8080"
     - "4504:4502"
-
+    stdin_open: true
+    tty:true
+    environment:
+    - AttachDebugger=Yes
+    
   backend:
     image: dyalog/jsonserver:dbg
     volumes:
@@ -19,7 +23,8 @@ services:
     ports:
     - "4503:4502"
     environment:
-    - MAXWS = 64M
+    - AttachDebugger=Yes
+    - MAXWS=64M
     
   frontend:
     image: dyalog/jsonserver:dbg
@@ -30,5 +35,6 @@ services:
     - "8080:8080"
     - "4502:4502"
     environment:
-    - MAXWS = 64M
+     - AttachDebugger=Yes
+     - MAXWS=64M
     

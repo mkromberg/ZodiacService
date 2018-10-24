@@ -1,6 +1,8 @@
 ﻿:Class DigitFrequency : MiPage
+
     ∇ Compose;go;mat
-      :Access Public
+      :Access Public    
+      Add _.StyleSheet 'https://www.w3.org/StyleSheets/Core/Chocolate'
       Add _.title'Digit Frequency'
       Add _.h1'Digit Frequency'
       '#file'Add _.Input''⍬'Filename: '

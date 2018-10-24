@@ -1,6 +1,8 @@
-:Class ZodiacMonitor : MiPage
+:Class ZodiacMonitor : MiPage  
+
     ∇ Compose;clear;mat;n
-      :Access Public
+      :Access Public       
+      Add _.StyleSheet 'https://www.w3.org/StyleSheets/Core/Midnight'
       Add _.h1'Zodiac Monitor'
       clear←Add _.Button'Clear'
       clear.On'click' 'OnClear'
@@ -12,5 +14,6 @@
       :Access Public
       ⎕←'empty component file'
       r←'#hittable'Replace New _.Table(⍉⍪'Container' 'Hits')⍬ 1
-    ∇
+    ∇               
+
 :EndClass
