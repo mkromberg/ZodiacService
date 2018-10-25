@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  
+  backend:
+    image: dyalog/jsonserver:dbg
+    volumes:
+    - "./backend/:/app/"
+    - "./shared/:/shared/"
+    ports:
+    - "4503:4502"
+    
+  frontend:
+    image: dyalog/jsonserver:dbg
+    volumes:
+    - "./frontend/:/app/"
+    - "./shared/:/shared/"
+    ports:
+    - "8080:8080"
+#    - "4502:4502"  RIDE not possible with load balancing
+# https://docs.docker.com/compose/compose-file/#endpoint_mode
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: vip
+     
+  monitor:  
+    image: dyalog/miserver:dbg
+    volumes:
+    - "./monitor/:/app/"
+    - "./shared/:/shared/"
+    ports:
+    - "8081:8080"
+    - "4504:4502"
