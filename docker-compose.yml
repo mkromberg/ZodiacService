@@ -9,6 +9,8 @@ services:
     - "./shared/:/shared/"
     ports:
     - "4503:4502"
+    stdin_open: true
+    tty: true
     
   frontend:
     image: dyalog/jsonserver:dbg
@@ -18,7 +20,9 @@ services:
     ports:
     - "8080:8080"
     - "4502:4502"
-     
+    stdin_open: true
+    tty: true 
+
   monitor:  
     image: dyalog/miserver:dbg
     volumes:
@@ -27,3 +31,5 @@ services:
     ports:
     - "8081:8080"
     - "4504:4502"
+    stdin_open: true
+    tty: true
