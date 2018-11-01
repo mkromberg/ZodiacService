@@ -1,6 +1,4 @@
 version: "3"
-stdin_open: true
-tty: true
 
 services:
   
@@ -11,7 +9,7 @@ services:
     - "./shared/:/shared/"
     ports:
     - "4503:4502"
-    
+
   frontend:
     image: dyalog/jsonserver:dbg
     volumes:
@@ -29,3 +27,5 @@ services:
     ports:
     - "8081:8080"
     - "4504:4502"
+    stdin_open: true
+    tty: true
